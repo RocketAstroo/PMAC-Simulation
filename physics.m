@@ -1,4 +1,4 @@
-function state_dot = physics(t, state, p)
+function [state_dot] = physics(t, state, p)
 
     r = state(1:3);      
     v = state(4:6);    
@@ -42,6 +42,10 @@ function state_dot = physics(t, state, p)
     B_body = eci2body(B_eci, psi, theta, phi);
     H_body = B_body/p.mu0;
 
+    dHdt = -cross(w, H_body); 
+
+
+    
     %External torques
 
     %Permanent magnet restoring torque 
@@ -59,9 +63,7 @@ function state_dot = physics(t, state, p)
     moment_total = moment_magnet + moment_hyst;
 
      power_hyst_dissipated = dot(moment_hyst, w);
-     fprintf('Time: %f s, Power_Hyst: %e W\n', t, power_hyst_dissipated)
-
-
+     fprintf('Power_Hyst: %e W\n', power_hyst_dissipated)
 
 
 
