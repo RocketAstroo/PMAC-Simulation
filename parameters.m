@@ -26,19 +26,19 @@ function p = parameters()
     p.moment_magnet = 0.3; 
     p.moment_magnet_vec = [p.moment_magnet; 0; 0];
 
-%Hysterisis rod design parameters (kept along Y and Z axes of the body frame of the sat)
+%Hysterisis rod design parameters 
     p.Rod_length = 0.095; 
     p.Rod_diameter = 0.001; 
     p.Hc = 12; 
     p.Br = 0.004; 
     p.Bs = 0.027;
     p.rod_vol = p.Rod_length * (pi * (p.Rod_diameter / 2)^2); 
-    p.no_rods = [3;3;3]; %along X,Y and Z 
+    p.no_rods = [0;1;1]; %along X,Y and Z 
     p.p0 = (1/p.Hc)*tan((pi*p.Br)/(2*p.Bs));
     p.current_Hc_signs = [-1;-1;-1]; %sign of Hc in Flatley & Henretty model of the hysterisis loop
 
 %Orbital parameters
-    p.inclination_orbit = 98 * (pi / 180); %SSPO orbit
+    p.inclination_orbit = 55 * (pi / 180); %SSPO orbit
     p.altitude_orbit = 600e3; 
     p.semi_major_orbit = p.altitude_orbit + p.radius_earth;
     p.vel_orbit = sqrt((p.gravitational_const * p.mass_earth) / (p.semi_major_orbit)); 
